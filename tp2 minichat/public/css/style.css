@@ -1,0 +1,27 @@
+body{
+    border: 5px solid black;
+    border-radius: 6px;
+    box-shadow: 6px 8px 6px #1c1a19;
+    background: url('fond.jpeg');
+}
+#formulaire{
+    text-align: center;
+    
+}
+#message{
+    width: 25%;
+    height: 50px;
+}
+h1{
+    text-align: center;
+    font-family: sans-serif;
+    text-decoration: underline;
+    font-size: 2.1em;
+    font-style: italic;
+}
+#resultat{
+    margin-left : 15%;
+    margin-right : 15%;
+    padding: 10px;
+    background-color: RGBa(153, 153, 204, 0.75);
+}
