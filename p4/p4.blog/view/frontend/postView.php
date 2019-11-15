@@ -36,5 +36,20 @@
         <?php
         }
         ?>
+        <!-- formulaire pour ajouter un commentaire !-->
+        <!-- source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4683301-nouvelle-fonctionnalite-ajouter-des-commentaires#/id/r-4683667 !-->
+        <form action="index.php?action=addComment&amp;id=<?= $post["id"] ?>" method="post">
+            <div>
+                <label for="author">Auteur</label><br/>
+                <input type="text" id="author" name="author" />
+            </div>
+            <div>
+                <label for="comment">Commentaire</label><br/>
+                <textarea id="comment" name="comment"></textarea>
+            </div>
+            <div>
+                <input type="submit" />
+            </div>
+        </form>
     </body>
 </html>
