@@ -17,7 +17,7 @@
         <p>
             <?= nl2br(htmlspecialchars($data['content'])) ?>
             <br />
-            <em><a href="#">Commentaires</a></em>
+            <em><a href="./view/frontend/postView.php">Commentaires</a></em>
         </p>
     </div>
 <?php

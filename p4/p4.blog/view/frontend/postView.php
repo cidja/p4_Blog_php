@@ -1,26 +1,17 @@
 <!--Dans cette vue, on affiche le billet (récupéré avec $post ) et les commentaires (récupérés dans$comments ) !-->
-
-<!DOCTYPE html>
-<html lang="fr-FR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="style.css" />
-        <title>postView (vue des billets)</title>
-    </head>
-    <body>
+        <?= $title = "Mon blog un post"; //définition du titre dans la variable $title 
+        ob_start()  // On commence la "capture" du code html suivant?> 
         <h1>Mon super blog</h1>
-        <p><a href="index.php">Retour à la liste des billets </a></p>
+        <p><a href="../../index.php">Retour à la liste des billets </a></p>
 
         <div class="news">
             <h3>
-                <?= htmlspecialchars($post['title']) ?>
-                <em>le <?= htmlspecialchars($post['creation_date_fr']) ?></em>
+                <?= htmlspecialchars($post['title']) //affichage du titre du billet ?> 
+                <em>le <?= htmlspecialchars($post['creation_date_fr']) // affichage de la date de création du billet ?></em>
             </h3>
 
             <p>
-                <?= nl2br(htmlspecialchars($post["content"])) ?>
+                <?= nl2br(htmlspecialchars($post["content"])) // Affichage du contenu du billet ?>
             </p>
         </div>
 
@@ -30,10 +21,11 @@
         while($comment = $comments->fetch()) // On parcours le tableau source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4678891-nouvelle-fonctionnalite-afficher-des-commentaires#/id/r-4681307
         {
         ?>
-            <p><strong><?= htmlspecialchars($comment["author"]) ?></strong> le
-            <?= htmlspecialchars($comment["comment_date_fr"]) ?> </p>
-            <p><?= nl2br(htmlspecialchars($comment["content"])) ?></p>
+            <p><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
+            <?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </p>
+            <p><?= nl2br(htmlspecialchars($comment["content"])) // Affichage du contenu du commentaire ?></p>
         <?php
+        $comments->closeCursor(); //on libère le curseur pour une nouvelle requête
         }
         ?>
         <!-- formulaire pour ajouter un commentaire !-->
@@ -51,5 +43,17 @@
                 <input type="submit" />
             </div>
         </form>
-    </body>
-</html>
+        <?php $content = ob_get_clean(); ?>
+        <?php require("view/frontend/template.php");
+        /*Ce code fait 3 choses :
+
+    Il définit le titre de la page dans $title. Celui-ci sera intégré dans la balise <title> dans le template.
+
+    Il définit le contenu de la page dans $content. Il sera intégré dans la balise <body> du template.
+    Comme ce contenu est un peu gros, on utilise une astuce pour le mettre dans une variable. On appelle 
+    la fonction ob_start() (ligne 3) qui "mémorise" toute la sortie HTML qui suit, puis, à la fin, on récupère 
+    le contenu généré avec ob_get_clean()  (ligne 28) et on met le tout dans $content .
+
+    Enfin, il appelle le template avec un require. Celui-ci va récupérer les variables $title et $content qu'on vient de créer... pour afficher la page !
+*/
+?>
