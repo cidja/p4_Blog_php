@@ -1,8 +1,8 @@
 <!--Dans cette vue, on affiche le billet (récupéré avec $post ) et les commentaires (récupérés dans$comments ) !-->
-        <?= $title = "Mon blog un post"; //définition du titre dans la variable $title 
+        <?= $title = htmlspecialchars($post["title"]); //définition du titre dans la variable $title 
         ob_start()  // On commence la "capture" du code html suivant?> 
         <h1>Mon super blog</h1>
-        <p><a href="../../index.php">Retour à la liste des billets </a></p>
+        <p><a href="index.php">Retour à la liste des billets </a></p>
 
         <div class="news">
             <h3>
@@ -16,18 +16,6 @@
         </div>
 
         <h2>Commentaires </h2>
-
-        <?php
-        while($comment = $comments->fetch()) // On parcours le tableau source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4678891-nouvelle-fonctionnalite-afficher-des-commentaires#/id/r-4681307
-        {
-        ?>
-            <p><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
-            <?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </p>
-            <p><?= nl2br(htmlspecialchars($comment["content"])) // Affichage du contenu du commentaire ?></p>
-        <?php
-        $comments->closeCursor(); //on libère le curseur pour une nouvelle requête
-        }
-        ?>
         <!-- formulaire pour ajouter un commentaire !-->
         <!-- source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4683301-nouvelle-fonctionnalite-ajouter-des-commentaires#/id/r-4683667 !-->
         <form action="index.php?action=addComment&amp;id=<?= $post["id"] ?>" method="post">
@@ -43,6 +31,17 @@
                 <input type="submit" />
             </div>
         </form>
+        <?php
+        while($comment = $comments->fetch()) // On parcours le tableau source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4678891-nouvelle-fonctionnalite-afficher-des-commentaires#/id/r-4681307
+        {
+        ?>
+            <p><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
+            <?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </p>
+            <p><?= nl2br(htmlspecialchars($comment["content"])) // Affichage du contenu du commentaire ?></p>
+        <?php
+        $comments->closeCursor(); //on libère le curseur pour une nouvelle requête
+        }
+        ?>
         <?php $content = ob_get_clean(); ?>
         <?php require("view/frontend/template.php");
         /*Ce code fait 3 choses :

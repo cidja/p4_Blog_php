@@ -17,7 +17,7 @@
         <p>
             <?= nl2br(htmlspecialchars($data['content'])) ?>
             <br />
-            <em><a href="./view/frontend/postView.php">Commentaires</a></em>
+            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
         </p>
     </div>
 <?php
@@ -26,7 +26,7 @@ $posts->closeCursor();
 ?>
 <?php $content = ob_get_clean();?>
 
-<?php require("view/frontend/template.php"); 
+<?php require("template.php"); 
 
 /*Ce code fait 3 choses :
 
