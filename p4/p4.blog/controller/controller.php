@@ -15,7 +15,7 @@ function post()
     $post = $postManager->getPost($_GET["id"]); // appel de la function getPost de l'objet PostManager (un seul post(billet))
 
     $commentManager = new CommentManager(); // Création d'un objet
-    $comment = $commentManager->getComments($_GET["id"]); // appel de la function getComments de l'objet CommentManager (récupère les comments)
+    $comments = $commentManager->getComments($_GET["id"]); // appel de la function getComments de l'objet CommentManager (récupère les comments)
 
     require("view/frontend/postView.php"); //Affiche un post avec ses commentaires
 }
