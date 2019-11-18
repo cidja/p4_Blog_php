@@ -18,10 +18,10 @@ class CommentManager extends ManagerDb
     public function postComment($postId, $author, $comment) 
     {
         $db = $this->dbConnect(); //appel de $this S:https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet#/id/r-4744592
-        $comments = $db->prepare("INSERT INTO comments(post_id, author, comment, comment_date)
-        VALUES (?, ?, ?, NOW()");
+        $comments = $db->prepare("INSERT INTO comments(post_id, author, comment, comment_date)VALUES(?, ?, ?, NOW())");
         $affectedLines = $comments->execute(array($postId, $author, $comment));
 
         return $affectedLines;
+        
     }
 }
