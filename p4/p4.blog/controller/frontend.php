@@ -9,6 +9,7 @@ function listPosts()
     $posts = $postManager->getPosts(); //Appel de la fonction de l'objet source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet#/id/r-4744655
     require("view/frontend/listPostView.php"); // affiche la liste des billets
 }
+
 function post()
 {
     $postManager = new PostManager(); // Création d'un objet
@@ -19,6 +20,7 @@ function post()
 
     require("view/frontend/postView.php"); //Affiche un post avec ses commentaires
 }
+
 function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager(); // Création d'un objet
@@ -30,6 +32,21 @@ function addComment($postId, $author, $comment)
         //jetons ici une exception, le code va s'arrêter là et l'erreur être remontée jusque dans le routeur qui contenait le bloc  try  !
         //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689802
         throw new Exception("Impossible d'ajouter le commentaire");
+    }
+    else { //Sinon on renvoi sur l'url index.php?action=post&id=5 par exemple pour le post avec l'id 5
+        header("location: index.php?action=post&id=". $postId);
+    }
+}
+
+function updateComment($postId, $comment)
+{
+    $commentManager = new CommentManager(); //création de l'objet
+    $resultUpdateComment = $commentManager->updateComment($postId, $comment); // appel de la fonction updateComment de CommentManager
+    if($resultUpdateComment === false){
+        //Notre modèle arrête tout et affiche une erreur avec un  die . Il y a moyen de faire plus propre : 
+        //jetons ici une exception, le code va s'arrêter là et l'erreur être remontée jusque dans le routeur qui contenait le bloc  try  !
+        //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689802
+        throw new Exception("Impossible de modifier le commentaire");
     }
     else { //Sinon on renvoi sur l'url index.php?action=post&id=5 par exemple pour le post avec l'id 5
         header("location: index.php?action=post&id=". $postId);

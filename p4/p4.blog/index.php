@@ -1,7 +1,7 @@
 <?php //deviens notre routeur 
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481
 
-require("./controller/controller.php");
+require("./controller/frontend.php");
 
 try { // on essai de faire des choses source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689754
     if(isset($_GET["action"])){
@@ -24,7 +24,14 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
                     addComment($_GET["id"], $_POST["author"], $_POST["comment"]);
                 }
                 else {
-                    // Autre exception
+                    /* a tester pour faire apparaître message a la soumission du formulaire
+                    <script>
+                    document.getElementById("submitbutton").addEventListener("click", function(e){
+                        e.preventDefault();
+                        console.log("on rentre");
+                    })
+                    let newP = document.createElement('p');
+                    newP.textContent =("Erreur tous les champs ne sont pas remplis !"); </script>*/
                     throw new Exception("Erreur tous les champs ne sont pas remplis !");
                 }
             }
@@ -32,7 +39,6 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
                 // Autre exception
                 throw new Exception("Erreur : aucun identifiant de billet envoyé");
             }
-    
         }
     }
     else{
