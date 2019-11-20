@@ -23,10 +23,10 @@
 <?php
 }
 $posts->closeCursor();
-?>
-<?php $content = ob_get_clean();?>
 
-<?php require("template.php"); 
+ $content = ob_get_clean();
+
+ require("template.php"); 
 
 /*Ce code fait 3 choses :
 

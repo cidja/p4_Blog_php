@@ -1,6 +1,6 @@
 <!--Dans cette vue, on affiche le billet (récupéré avec $post ) et les commentaires (récupérés dans$comments ) !-->
-        <?= $title = htmlspecialchars($post["title"]); //définition du titre dans la variable $title 
-        ob_start()  // On commence la "capture" du code html suivant?> 
+        <?php $title = htmlspecialchars($post["title"]); //définition du titre dans la variable $title 
+        ob_start();  // On commence la "capture" du code html suivant?> 
         <h1>Mon super blog</h1>
         <p><a href="index.php">Retour à la liste des billets </a></p>
 
@@ -41,9 +41,9 @@
         <?php
         }
         $comments->closeCursor(); //on libère le curseur pour une nouvelle requête
-        ?>
-        <?php $content = ob_get_clean(); ?>
-        <?php require("template.php");
+        
+         $content = ob_get_clean(); 
+         require("template.php"); 
         /*Ce code fait 3 choses :
 
     Il définit le titre de la page dans $title. Celui-ci sera intégré dans la balise <title> dans le template.

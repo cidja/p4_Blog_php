@@ -3,25 +3,26 @@
 require_once("model/PostManager.php"); //appel de la classe PostManager require_once (une fois uniquement)
 require_once("model/CommentManager.php"); //appel de la classe CommentManager require_once (une fois uniquement)
 
-function listPosts()
-{
-    $postManager = new PostManager(); //Création d'un objet
-    $posts = $postManager->getPosts(); //Appel de la fonction de l'objet source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet#/id/r-4744655
-    require("view/frontend/listPostView.php"); // affiche la liste des billets
-}
 
-function post()
-{
-    $postManager = new PostManager(); // Création d'un objet
-    $post = $postManager->getPost($_GET["id"]); // appel de la function getPost de l'objet PostManager (un seul post(billet))
+trait ToolsFrontend{ //création d'un trait pour pouvoir rester dans l'appel de POO
+    public static function listPosts()
+    {
+        $postManager = new PostManager(); //Création d'un objet
+        $posts = $postManager->getPosts(); //Appel de la fonction de l'objet source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet#/id/r-4744655
+        require("view/frontend/listPostView.php"); // affiche la liste des billets
+    }
+    public static function post()
+    {
+        $postManager = new PostManager(); // Création d'un objet
+        $post = $postManager->getPost($_GET["id"]); // appel de la function getPost de l'objet PostManager (un seul post(billet))
+    
+        $commentManager = new CommentManager(); // Création d'un objet
+        $comments = $commentManager->getComments($_GET["id"]); // appel de la function getComments de l'objet CommentManager (récupère les comments)
+    
+        require("view/frontend/postView.php"); //Affiche un post avec ses commentaires
+    }
 
-    $commentManager = new CommentManager(); // Création d'un objet
-    $comments = $commentManager->getComments($_GET["id"]); // appel de la function getComments de l'objet CommentManager (récupère les comments)
-
-    require("view/frontend/postView.php"); //Affiche un post avec ses commentaires
-}
-
-function addComment($postId, $author, $comment)
+    public function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager(); // Création d'un objet
 
@@ -38,7 +39,7 @@ function addComment($postId, $author, $comment)
     }
 }
 
-function updateComment($postId, $comment)
+    public function updateComment($postId, $comment)
 {
     $commentManager = new CommentManager(); //création de l'objet
     $resultUpdateComment = $commentManager->updateComment($postId, $comment); // appel de la fonction updateComment de CommentManager
@@ -51,4 +52,5 @@ function updateComment($postId, $comment)
     else { //Sinon on renvoi sur l'url index.php?action=post&id=5 par exemple pour le post avec l'id 5
         header("location: index.php?action=post&id=". $postId);
     }
+}
 }

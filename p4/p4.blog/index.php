@@ -6,11 +6,11 @@ require("./controller/frontend.php");
 try { // on essai de faire des choses source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689754
     if(isset($_GET["action"])){
         if($_GET["action"] == "listPosts"){ //si dans l'url action = listPosts on appel listPosts du controller
-            listPosts();
+            ToolsFrontend::listPosts(); //utilisation du trait ToolsFrontend
         }
         elseif ($_GET["action"] == "post"){
             if(isset($_GET['id']) && $_GET["id"] > 0){ //Si dans l'url action = post on appel post du controller
-                post();
+                ToolsFrontend::post();
             }
             else {
                 // Erreur ! on arrête tout, on envoie une exception, donc on saute directement au catch
@@ -21,7 +21,7 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
             //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4683301-nouvelle-fonctionnalite-ajouter-des-commentaires#/id/r-4683671
             if (isset($_GET["id"]) && $_GET["id"] > 0){
                 if (!empty($_POST["author"]) && !empty($_POST["comment"])) {
-                    addComment($_GET["id"], $_POST["author"], $_POST["comment"]);
+                    ToolsFrontend::addComment($_GET["id"], $_POST["author"], $_POST["comment"]);
                 }
                 else {
                     /* a tester pour faire apparaître message a la soumission du formulaire
@@ -42,7 +42,7 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
         }
     }
     else{
-        listPosts(); //appel de listPosts() liste des posts
+        ToolsFrontend::listPosts(); //appel de listPosts() liste des posts
     }
 }
 catch(Exception $e) // s'il y a une erreur, alors...
