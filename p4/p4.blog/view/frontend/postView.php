@@ -38,7 +38,9 @@
             <p><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
             <?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </p>
             <p><?= nl2br(htmlspecialchars($comment["comment"])) // Affichage du contenu du commentaire ?></p>
+            <a href="index.php?action=signalComment&amp;id=<?= $comment["id"]?>">Signaler le commentaire</a><!--Utiliser pour renvoyer sur une page pour valider la signalisation de commentaire !-->
         <?php
+
         }
         $comments->closeCursor(); //on libère le curseur pour une nouvelle requête
         

@@ -6,15 +6,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title><?= $title ?></title>
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="public/css/style.css"/>
     </head>
 
     <body>
     <header>
     <!--Utiliser pour afficher le formulaire de connexion !-->
     <div class="accessbackend"> 
-    Accés adminstrateur :
-        <form action="" method="post">
+    
+        <form action="index.php?action=backend" method="post">
+        Accés adminstrateur :
             <label for="identifiant"><input type="text" name="identifiant" id="identifiant" placeholder="identifiant" required /></label>
             <label for="mdp"><input type="password" name="mdp" id="mdp" placeholder="mot de passe" required /></label>
             <input type="submit" value="connexion" />
@@ -22,6 +23,6 @@
     </div>
     </header>
 
-        <?= $content ?> <!--va contenir ce que l'on veut mettre dedans direction indexView.php !-->
+        <?= $content ?> <!--va contenir ce que l'on veut mettre dedans direction listPostView.php !-->
     </body>
 </html>

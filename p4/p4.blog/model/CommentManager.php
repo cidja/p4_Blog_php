@@ -24,4 +24,16 @@ class CommentManager extends ManagerDb
         return $affectedLines;
         
     }
+    public function signalComment($id) //fonction pour signaler un commentaire pour le faire remonter dans l'interface backend
+    { //le but de la fonction est d'ajouter un TRUE sur la colonne signal de la table comments pour ensuite le faire remonter dans les signal sur le backend
+        $db = $this->dbConnect(); //appel de $this S:https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet#/id/r-4744592
+        $comments = $db->prepare("UPDATE comments SET signal=:signal WHERE id=:id");
+        $signalComments = $comments->execute(array(
+            "signal"        => "true",
+            "id"            =>$id
+        ));
+        var_dump($id);
+        var_dump($signalComments);
+        return $signalComments;
+    }
 }

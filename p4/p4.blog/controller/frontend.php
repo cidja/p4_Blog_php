@@ -22,7 +22,7 @@ trait ToolsFrontend{ //création d'un trait pour pouvoir rester dans l'appel de 
         require("view/frontend/postView.php"); //Affiche un post avec ses commentaires
     }
 
-    public function addComment($postId, $author, $comment)
+    public static function addComment($postId, $author, $comment)
 {
     $commentManager = new CommentManager(); // Création d'un objet
 
@@ -38,19 +38,17 @@ trait ToolsFrontend{ //création d'un trait pour pouvoir rester dans l'appel de 
         header("location: index.php?action=post&id=". $postId);
     }
 }
+    public static function signalComment($id)
+    {
+        $commentManager = new CommentManager(); // création d'un objet
 
-    public function updateComment($postId, $comment)
-{
-    $commentManager = new CommentManager(); //création de l'objet
-    $resultUpdateComment = $commentManager->updateComment($postId, $comment); // appel de la fonction updateComment de CommentManager
-    if($resultUpdateComment === false){
-        //Notre modèle arrête tout et affiche une erreur avec un  die . Il y a moyen de faire plus propre : 
-        //jetons ici une exception, le code va s'arrêter là et l'erreur être remontée jusque dans le routeur qui contenait le bloc  try  !
-        //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689802
-        throw new Exception("Impossible de modifier le commentaire");
+        $signalComment = $commentManager->signalComment($id); // Appel de la fonction signalComment de l'objet CommentManager
+        if($signalComment === false) 
+        {
+            throw new Exception("Impossible de signaler le commentaire on ne sais pas pourquoi");
+        }
+        else {
+            header("location: index.php?action=post&id=" .$postId);
+        }
     }
-    else { //Sinon on renvoi sur l'url index.php?action=post&id=5 par exemple pour le post avec l'id 5
-        header("location: index.php?action=post&id=". $postId);
-    }
-}
 }
