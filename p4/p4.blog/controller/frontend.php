@@ -1,7 +1,7 @@
 <?php
-
-require_once("model/PostManager.php"); //appel de la classe PostManager require_once (une fois uniquement)
-require_once("model/CommentManager.php"); //appel de la classe CommentManager require_once (une fois uniquement)
+//tous les appels ce font directement dans le index.php
+//require_once("model/PostManager.php"); //appel de la classe PostManager require_once (une fois uniquement)
+//require_once("model/CommentManager.php"); //appel de la classe CommentManager require_once (une fois uniquement)
 
 
 trait ToolsFrontend{ //création d'un trait pour pouvoir rester dans l'appel de POO
@@ -38,7 +38,7 @@ trait ToolsFrontend{ //création d'un trait pour pouvoir rester dans l'appel de 
         header("location: index.php?action=post&id=". $postId);
     }
 }
-    public static function signalComment($id)
+    public static function signalComment($id, $postId)
     {
         $commentManager = new CommentManager(); // création d'un objet
 
@@ -48,6 +48,7 @@ trait ToolsFrontend{ //création d'un trait pour pouvoir rester dans l'appel de 
             throw new Exception("Impossible de signaler le commentaire");
         }
         else {
+           
             /*
             Ceci est du code HTML
              <script> 
@@ -63,7 +64,7 @@ trait ToolsFrontend{ //création d'un trait pour pouvoir rester dans l'appel de 
                 </script>
                 <?php
 */
-            header("location: index.php?action=listPosts"); // renvoi au menu principal
+            header("location: index.php?action=post&id=".$postId); // renvoi au menu principal
             }
             
         }

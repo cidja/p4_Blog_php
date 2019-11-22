@@ -1,8 +1,10 @@
 <?php //deviens notre routeur 
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481
-
-require("./controller/frontend.php");
-require("./controller/backend.php");
+include(dirname(__FILE__)."/model/Managerdb.php");
+include(dirname(__FILE__)."/controller/frontend.php");
+include(dirname(__FILE__)."/controller/backend.php");
+include(dirname(__FILE__)."/model/PostManager.php"); //appel de la classe PostManager require_once (une fois uniquement)
+include(dirname(__FILE__)."/model/CommentManager.php"); //appel de la classe CommentManager require_once (une fois uniquement)
 
 
 try { // on essai de faire des choses source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689754
@@ -38,13 +40,13 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
                 }
             }
             else {
-                // Autre exception
-                throw new Exception("Erreur : aucun identifiant de billet envoyé");
-            }
+            // Autre exception
+            throw new Exception("Erreur : aucun identifiant de billet envoyé");
         }
+    }
         
         elseif ($_GET["action"] == "signalComment"){ //Pour signaler un commentaire 
-            ToolsFrontend::signalComment($_GET["id"]); //Appel de la fonction signalComment du controller frontend
+            ToolsFrontend::signalComment( $_GET["id"], $_GET["post_id"]); //Appel de la fonction signalComment du controller frontend avec comme paramètres le post_id du comment
         }
 
         elseif ($_GET["action"] == "backend"){ //vérifiation de l'id et du mdp qui se situe dans le header du template
