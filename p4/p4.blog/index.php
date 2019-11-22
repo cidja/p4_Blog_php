@@ -1,16 +1,20 @@
 <?php //deviens notre routeur 
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481
+include(dirname(__FILE__)."/model/Managerdb.php");
+include(dirname(__FILE__)."/controller/frontend.php");
+include(dirname(__FILE__)."/controller/backend.php");
+include(dirname(__FILE__)."/model/PostManager.php"); //appel de la classe PostManager require_once (une fois uniquement)
+include(dirname(__FILE__)."/model/CommentManager.php"); //appel de la classe CommentManager require_once (une fois uniquement)
 
-require("./controller/frontend.php");
 
 try { // on essai de faire des choses source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689754
     if(isset($_GET["action"])){
         if($_GET["action"] == "listPosts"){ //si dans l'url action = listPosts on appel listPosts du controller
-            listPosts();
+            ToolsFrontend::listPosts(); //renvoi dans controller/frontend
         }
         elseif ($_GET["action"] == "post"){
             if(isset($_GET['id']) && $_GET["id"] > 0){ //Si dans l'url action = post on appel post du controller
-                post();
+                ToolsFrontend::post(); //renvoi dans controller/frontend
             }
             else {
                 // Erreur ! on arrête tout, on envoie une exception, donc on saute directement au catch
@@ -21,7 +25,7 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
             //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4683301-nouvelle-fonctionnalite-ajouter-des-commentaires#/id/r-4683671
             if (isset($_GET["id"]) && $_GET["id"] > 0){
                 if (!empty($_POST["author"]) && !empty($_POST["comment"])) {
-                    addComment($_GET["id"], $_POST["author"], $_POST["comment"]);
+                    ToolsFrontend::addComment($_GET["id"], $_POST["author"], $_POST["comment"]); //renvoi dans controller/frontend
                 }
                 else {
                     /* a tester pour faire apparaître message a la soumission du formulaire
@@ -36,13 +40,26 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
                 }
             }
             else {
-                // Autre exception
-                throw new Exception("Erreur : aucun identifiant de billet envoyé");
+            // Autre exception
+            throw new Exception("Erreur : aucun identifiant de billet envoyé");
+        }
+    }
+        
+        elseif ($_GET["action"] == "signalComment"){ //Pour signaler un commentaire 
+            ToolsFrontend::signalComment( $_GET["id"], $_GET["post_id"]); //Appel de la fonction signalComment du controller frontend avec comme paramètres le post_id du comment
+        }
+
+        elseif ($_GET["action"] == "backend"){ //vérifiation de l'id et du mdp qui se situe dans le header du template
+            if(($_POST["identifiant"] == "admin") && ($_POST["mdp"] == "secret")){
+                ToolsBackend::listPosts(); // affichage du template backend
+            }
+            else {
+                throw new Exception("Erreur mauvais mot de passe ou identifiant");
             }
         }
     }
     else{
-        listPosts(); //appel de listPosts() liste des posts
+        ToolsFrontend::listPosts(); //appel de listPosts() liste des posts
     }
 }
 catch(Exception $e) // s'il y a une erreur, alors...

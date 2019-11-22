@@ -1,7 +1,7 @@
 <?php
-
+//tous les appels ce font directement dans le index.php
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4735671-passage-du-modele-en-objet#/id/r-4735685
-require_once("model/ManagerDb.php"); // Appel de la classe ManagerDb.php source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4744941-tirer-parti-de-lheritage#/id/r-4745131
+//require_once("model/ManagerDb.php"); // Appel de la classe ManagerDb.php source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4744941-tirer-parti-de-lheritage#/id/r-4745131
 
 class PostManager  extends ManagerDb 
 { //class qui va regrouper l'ensemble des fonctions utiliser pour les posts (billets)
@@ -23,5 +23,13 @@ class PostManager  extends ManagerDb
         $post = $req->fetch();
     
         return $post;
+    }
+    public function updatePost($title,$content,$postId) //fonction utilisé pour update un post dans le backend
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE posts SET title = ?, content = ? WHERE id = ?");
+        $updatePost = $req->execute(array($title,$content,$postId));
+        return $updatePost;
+        
     }
 }

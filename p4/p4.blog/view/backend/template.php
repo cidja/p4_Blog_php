@@ -15,10 +15,8 @@
     <div class="accessbackend"> 
     
         <form action="index.php?action=backend" method="post">
-        Accés adminstrateur :
-            <label for="identifiant"><input type="text" name="identifiant" id="identifiant" placeholder="identifiant" required /></label>
-            <label for="mdp"><input type="password" name="mdp" id="mdp" placeholder="mot de passe" required /></label>
-            <input type="submit" value="connexion" />
+        Déconnexion:
+            <input type="submit" value="déconnexion" />
         </form>
     </div>
     </header>
