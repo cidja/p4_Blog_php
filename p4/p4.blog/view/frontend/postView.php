@@ -35,9 +35,16 @@
         while($comment = $comments->fetch()) // On parcours le tableau source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4678891-nouvelle-fonctionnalite-afficher-des-commentaires#/id/r-4681307
         {
         ?>
+<<<<<<< Updated upstream
             <p><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
             <?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </p>
             <p><?= nl2br(htmlspecialchars($comment["comment"])) // Affichage du contenu du commentaire ?></p>
+=======
+            <p class='author'><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
+            <span class="comment_date"><?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </span></p>
+            <p class="comment"><?= nl2br(htmlspecialchars($comment["comment"])) // Affichage du contenu du commentaire ?></p>
+            <a href="index.php?action=signalComment&amp;id=<?= $comment["id"]?>&post_id=<?= $comment["post_id"]?>" id="signalLink">Signaler</a><!--Utiliser pour renvoyer sur une page pour valider la signalisation de commentaire !-->
+>>>>>>> Stashed changes
         <?php
         }
         $comments->closeCursor(); //on libère le curseur pour une nouvelle requête
