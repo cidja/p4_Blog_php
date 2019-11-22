@@ -1,4 +1,5 @@
 <?php //deviens notre routeur 
+session_start();
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481
 include(dirname(__FILE__)."/model/Managerdb.php");
 include(dirname(__FILE__)."/controller/frontend.php");
@@ -51,6 +52,8 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
 
         elseif ($_GET["action"] == "backend"){ //vérifiation de l'id et du mdp qui se situe dans le header du template
             if(($_POST["identifiant"] == "admin") && ($_POST["mdp"] == "secret")){
+                $_SESSION["identifiant"] = $_POST["identifiant"];
+                $_SESSION["mdp"] = $_POST["mdp"];
                 ToolsBackend::listPosts(); // affichage du template backend
             }
             else {

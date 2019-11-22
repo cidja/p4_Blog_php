@@ -1,5 +1,8 @@
 <!--Dans cette vue, on affiche le billet (récupéré avec $post ) et les commentaires (récupérés dans$comments ) !-->
-        <?php $title = htmlspecialchars($post["title"]); //définition du titre dans la variable $title 
+        <?php
+        session_start();
+        $title = htmlspecialchars($post["title"]); //définition du titre dans la variable $title 
+        
         ob_start();  // On commence la "capture" du code html suivant?> 
         <h1>Mon super blog</h1>
         <p><a href="index.php">Retour à la liste des billets </a></p>
@@ -38,7 +41,7 @@
             <p><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
             <?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </p>
             <p><?= nl2br(htmlspecialchars($comment["comment"])) // Affichage du contenu du commentaire ?></p>
-            <p><?= $comment["post_id"]; ?></p>
+           
             <a href="index.php?action=signalComment&amp;id=<?= $comment["id"]?>&post_id=<?= $comment["post_id"]?>" id="signallink">Signaler le commentaire</a><!--Utiliser pour renvoyer sur une page pour valider la signalisation de commentaire !-->
         <?php
 
