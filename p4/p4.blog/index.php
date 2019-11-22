@@ -2,6 +2,8 @@
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481
 
 require("./controller/frontend.php");
+require("./controller/backend.php");
+
 
 try { // on essai de faire des choses source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689754
     if(isset($_GET["action"])){
@@ -47,7 +49,10 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
 
         elseif ($_GET["action"] == "backend"){ //vérifiation de l'id et du mdp qui se situe dans le header du template
             if(($_POST["identifiant"] == "admin") && ($_POST["mdp"] == "secret")){
-                // affichage du template backend
+                ToolsBackend::listPosts(); // affichage du template backend
+            }
+            else {
+                throw new Exception("Erreur mauvais mot de passe ou identifiant");
             }
         }
     }

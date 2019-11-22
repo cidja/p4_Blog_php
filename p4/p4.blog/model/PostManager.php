@@ -24,4 +24,12 @@ class PostManager  extends ManagerDb
     
         return $post;
     }
+    public function updatePost($title,$content,$postId) //fonction utilisé pour update un post dans le backend
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare("UPDATE posts SET title = ?, content = ? WHERE id = ?");
+        $updatePost = $req->execute(array($title,$content,$postId));
+        return $updatePost;
+        
+    }
 }

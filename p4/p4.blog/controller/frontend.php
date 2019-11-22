@@ -45,10 +45,26 @@ trait ToolsFrontend{ //création d'un trait pour pouvoir rester dans l'appel de 
         $signalComment = $commentManager->signalComment($id); // Appel de la fonction signalComment de l'objet CommentManager
         if($signalComment === false) 
         {
-            throw new Exception("Impossible de signaler le commentaire on ne sais pas pourquoi");
+            throw new Exception("Impossible de signaler le commentaire");
         }
         else {
-            header("location: index.php?action=post&id=" .$postId);
+            /*
+            Ceci est du code HTML
+             <script> 
+            
+            let signalLink = document.getElementById("signallink");
+            let newP = document.createElement("p"); // création d'un élément <p>
+            newP.textContent = "Le commentaire a bien était signalé";
+            signalLink.addEventListener("click", function ()
+            {
+                signalLink.style.display = "none";
+                signalLink.append(newP);
+                });
+                </script>
+                <?php
+*/
+            header("location: index.php?action=listPosts"); // renvoi au menu principal
+            }
+            
         }
     }
-}
