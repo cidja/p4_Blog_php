@@ -35,23 +35,10 @@
         while($comment = $comments->fetch()) // On parcours le tableau source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4678891-nouvelle-fonctionnalite-afficher-des-commentaires#/id/r-4681307
         {
         ?>
-            <p><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
-            <?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </p>
-            <p><?= nl2br(htmlspecialchars($comment["comment"])) // Affichage du contenu du commentaire ?></p>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <a href="index.php?action=signalComment&amp;id=<?= $comment["id"]?>&post_id=<?= $comment["post_id"]?>" id="signallink">Signaler le commentaire</a><!--Utiliser pour renvoyer sur une page pour valider la signalisation de commentaire !-->
-
-=======
->>>>>>> parent of a5ed1c6... test frondend ok
-=======
->>>>>>> parent of a5ed1c6... test frondend ok
-=======
->>>>>>> parent of a5ed1c6... test frondend ok
-=======
->>>>>>> parent of a5ed1c6... test frondend ok
+            <p class='author'><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
+            <span class="comment_date"><?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </span></p>
+            <p class="comment"><?= nl2br(htmlspecialchars($comment["comment"])) // Affichage du contenu du commentaire ?></p>
+            <a href="index.php?action=signalComment&amp;id=<?= $comment["id"]?>&post_id=<?= $comment["post_id"]?>" id="signalLink">Signaler</a><!--Utiliser pour renvoyer sur une page pour valider la signalisation de commentaire !-->
         <?php
 
         }
