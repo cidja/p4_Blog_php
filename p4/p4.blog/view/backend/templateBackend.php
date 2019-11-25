@@ -7,9 +7,19 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title><?= $title ?></title>
         <link rel="stylesheet" href="style.css"/>
+        <script src="https://kit.fontawesome.com/bad7172f0a.js" crossorigin="anonymous"></script> <!--cdn fontawesome source: https://fontawesome.com/kits/bad7172f0a/settings !-->
        
     </head>
-
+    <header>
+    <!--Utiliser pour afficher le formulaire de connexion !-->
+    <div class="accessbackend"> 
+    
+        <form action="index.php?action=backend" method="post">
+        Déconnexion:
+            <input type="submit" value="déconnexion" />
+        </form>
+    </div>
+    </header>
     
     <body>
 

@@ -1,32 +1,37 @@
 <?php $title = "Admin mon blog"; 
 
  ob_start(); ?>
-<h1>Administration super blog</h1>
-<p>Derniers billets du blog :</p>
+    <h1>Administration super blog</h1>
+    
+    <div id="readpost"><i class="fas fa-book-open"></i>Lire les posts </div>
+    <div id="createpost"><i class="fas fa-plus-circle"></i>Créer un post </div>
+    <div id="updatepost"><i class="fas fa-edit"></i>Modifier un post</div>
+    <div id="deletepost"><i class="fas fa-trash-alt"></i>Supprimer un post</div>
+
         
-<?php
-    while($data = $posts->fetch()) //récupération de $posts passé en paramètres dans le index.php qui viens lui même du model.php
-    {
-?>
-    <div class="news">
-        <h3>
-            <?= htmlspecialchars($data['title']) ?>
-            <em>le <?= $data['creation_date_fr'] ?></em>
-        </h3>
-                
-        <p>
-            <?= nl2br(htmlspecialchars($data['content'])) ?>
-            <br />
-            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Vue détaillée</a></em>
-        </p>
-    </div>
-<?php
-}
-$posts->closeCursor();
+    <?php
+        while($data = $posts->fetch()) //récupération de $posts passé en paramètres dans le index.php qui viens lui même du model.php
+        {
+    ?>
+        <div class="news">
+            <h3>
+                <?= htmlspecialchars($data['title']) ?>
+                <em>le <?= $data['creation_date_fr'] ?></em>
+            </h3>
+                    
+            <p>
+                <?= nl2br(htmlspecialchars($data['content'])) ?>
+                <br />
+                <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Vue détaillée</a></em>
+            </p>
+        </div>
+    <?php
+    }
+    $posts->closeCursor();
 
- $content = ob_get_clean();
+    $content = ob_get_clean();
 
- require("template.php"); 
+ require("templateBackend.php"); 
 
 /*Ce code fait 3 choses :
 

@@ -32,4 +32,15 @@ class PostManager  extends ManagerDb
         return $updatePost;
         
     }
+
+    //fonction qui sera utilisé pour créer un post (admin backend)
+    public function createPost($title, $content){
+        $db= $this->dbConnect(); // conntection avec la base de données
+        $req = $db->prepare("INSERT INTO posts(title, content, creation_date) VALUES (:title, :content, NOW())");
+        $createPost = $req->execute(array(
+            ":title"    => $title,
+            ":content"  => $content
+        ));
+        return $createPost;
+    }
 }

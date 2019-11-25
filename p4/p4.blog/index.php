@@ -50,6 +50,9 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
             ToolsFrontend::signalComment( $_GET["id"], $_GET["post_id"]); //Appel de la fonction signalComment du controller frontend avec comme paramètres le post_id du comment
         }
 
+
+        //partie Backend
+        
         elseif ($_GET["action"] == "backend"){ //vérifiation de l'id et du mdp qui se situe dans le header du template
             if(($_POST["identifiant"] == "admin") && ($_POST["mdp"] == "secret")){
                 $_SESSION["identifiant"] = $_POST["identifiant"];
