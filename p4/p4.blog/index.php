@@ -63,6 +63,12 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
                 throw new Exception("Erreur mauvais mot de passe ou identifiant");
             }
         }
+        elseif ($_GET["action"] == "createPostView"){
+            header("location: view/backend/createPostView.php"); //envoi sur le formulaire 
+        }
+        elseif($_GET["action"] == "createPostViewConfirm"){ // Quand on est sur le formulaire on appel le trait createPost()
+            ToolsBackend::createPost($_POST["title"], $_POST["content"]);
+        }
     }
     else{
         ToolsFrontend::listPosts(); //appel de listPosts() liste des posts

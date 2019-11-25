@@ -8,6 +8,9 @@
         <title><?= $title ?></title>
         <link rel="stylesheet" href="style.css"/>
         <script src="https://kit.fontawesome.com/bad7172f0a.js" crossorigin="anonymous"></script> <!--cdn fontawesome source: https://fontawesome.com/kits/bad7172f0a/settings !-->
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>tinymce.init({selector:'textarea'});</script> <!--CDN tony mce source: https://www.tiny.cloud/get-tiny/ !-->
+        
        
     </head>
     <header>
