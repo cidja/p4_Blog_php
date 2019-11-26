@@ -16,7 +16,7 @@
     
         <form action="index.php?action=backend" method="post">
         Accés adminstrateur :
-            <label for="identifiant"><input type="text" name="identifiant" id="identifiant" placeholder="identifiant" required /></label>
+            <label for="user"><input type="text" name="user" id="user" placeholder="identifiant" required /></label>
             <label for="mdp"><input type="password" name="mdp" id="mdp" placeholder="mot de passe" required /></label>
             <input type="submit" value="connexion" />
         </form>

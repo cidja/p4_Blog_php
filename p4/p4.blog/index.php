@@ -1,5 +1,5 @@
 <?php //deviens notre routeur 
-session_start();
+session_start(); // enregistrement des paramètres pour l'admin source: http://www.lephpfacile.com/cours/18-les-sessions Ligne 64
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481
 include(dirname(__FILE__)."/model/Managerdb.php");
 include(dirname(__FILE__)."/controller/frontend.php");
@@ -51,16 +51,25 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
         }
 
 
-        //partie Backend
+        //---------------------------partie Backend--------------------------------------------
         
-        elseif ($_GET["action"] == "backend"){ //vérifiation de l'id et du mdp qui se situe dans le header du template
-            if(($_POST["identifiant"] == "admin") && ($_POST["mdp"] == "secret")){
-                $_SESSION["identifiant"] = $_POST["identifiant"];
-                $_SESSION["mdp"] = $_POST["mdp"];
+        elseif ($_GET["action"] == "backend"){
+            
+            if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){
                 ToolsBackend::listPosts(); // affichage du template backend
+            }
+            elseif(empty($_SESSION["user"]) && empty($_SESSION["mdp"])){ //Si $_SESSION empty on crée les variables $user et $mdp pour connexion backend
+                $user = htmlspecialchars($_POST["user"]); // htmlspecialchars pour éviter une faille de sécurité 
+                $mdp = htmlspecialchars($_POST["mdp"]); // htmlspecialchars pour éviter une faille de sécurité
+                if(($user == "admin") && ($mdp == "secret")){
+                    $_SESSION["user"] = $user;
+                    $_SESSION["mdp"] = $mdp;
+                    ToolsBackend::listPosts(); // affichage du template backend
+                } 
             }
             else {
                 throw new Exception("Erreur mauvais mot de passe ou identifiant");
+                
             }
         }
         elseif ($_GET["action"] == "createPostView"){
@@ -69,6 +78,7 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
         elseif($_GET["action"] == "createPostViewConfirm"){ // Quand on est sur le formulaire on appel le trait createPost()
             ToolsBackend::createPost($_POST["title"], $_POST["content"]);
         }
+        
     }
     else{
         ToolsFrontend::listPosts(); //appel de listPosts() liste des posts
