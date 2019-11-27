@@ -12,7 +12,7 @@ echo "<br> post = " .$_SESSION["mdp"]; ?>
             <input type="text" id="title" name="title" placeholder="Titre" required autofocus />
         <label for="content">Contenu du billet : </label>    
  <!--en dessous utilisation des balises pour Tiny MCE pour écrire les posts !-->
-        <textarea id="content" name="content" placeholder="rentrez votre texte ici" required></textarea>
+        <textarea id="content" name="content" placeholder="rentrez votre texte ici" required>Rentrez votre texte du billet </textarea>
         <input type="submit" value="valider" />
     </form> 
 

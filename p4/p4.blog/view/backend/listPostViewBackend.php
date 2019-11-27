@@ -1,6 +1,6 @@
 <?php 
 
-if(isset($_SESSION["identifiant"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on a bien les id et mdp pour acceder à l'interface d'admin
+if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on a bien les id et mdp pour acceder à l'interface d'admin
     echo $_SESSION["user"];
     echo "<br>" .$_SESSION["mdp"];
     $title = "Admin mon blog"; 

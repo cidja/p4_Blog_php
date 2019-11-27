@@ -54,7 +54,6 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
         //---------------------------partie Backend--------------------------------------------
         
         elseif ($_GET["action"] == "backend"){
-            
             if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){
                 ToolsBackend::listPosts(); // affichage du template backend
             }
