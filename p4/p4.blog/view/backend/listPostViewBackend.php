@@ -8,8 +8,8 @@ if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on 
     <h1>Administration super blog</h1>
     
     <div id="createpost"><a href="index.php?action=createPostView"><i class="fas fa-plus-circle"></i>Créer un post </a></div>
-    <div id="updatepost"><i class="fas fa-edit"></i>Modifier un post</div>
-    <div id="deletepost"><i class="fas fa-trash-alt"></i>Supprimer un post</div>
+    <div id="updatepost">Modifier un post</div>
+    <div id="deletepost">Supprimer un post</div>
 
     <?php
         while($data = $posts->fetch()) //récupération de $posts passé en paramètres dans le index.php qui viens lui même du model.php
@@ -17,9 +17,9 @@ if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on 
     ?>
         <div class="news">
         <div class="menuposts">
-            <div id="readpost"><a href="index.php?action=postBackend&amp;id=<?= $data["id"]; ?>">Vue détaillée</a></div>
-            <div id="updatepost"><a href="index.php?action=updatePost&amp;id=<?= $data["id"]; ?>">Modifier le post</a></div> <!--utilisation de $data["id"] pour le récupérer dans l'index.php !-->
-            <div id="deletepost"><a href="#">Supprimer le post</a></div>
+            <div id="readpost"><a href="index.php?action=postBackend&amp;id=<?= $data["id"]; ?>"><i class="fas fa-search-plus"></i>Vue détaillée</a></div>
+            <div id="updatepost"><a href="index.php?action=updatePost&amp;id=<?= $data["id"]; ?>"><i class="fas fa-edit"></i>Modifier le post</a></div> <!--utilisation de $data["id"] pour le récupérer dans l'index.php !-->
+            <div id="deletepost"><a href="#"><i class="fas fa-trash-alt"></i>Supprimer le post</a></div>
         </div>
             <h3>
                 <?= htmlspecialchars($data['title']) ?>

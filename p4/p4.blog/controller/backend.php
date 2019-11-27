@@ -31,7 +31,7 @@
         {
             $postManager = new PostManager(); // Créatoin d'un objet PostManager();
             $createPost = $postManager->createPost($title, $content); // Appel de la fonction de l'objet source
-            require("view/backend/createPostView.php");
+            
         }
 
         //fonction pour updater les posts 

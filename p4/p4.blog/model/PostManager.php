@@ -44,5 +44,5 @@ class PostManager  extends ManagerDb
         return $createPost;
     }
 
-    //fonction utilisé pour supprimer un post 
+    //fonction utilisé pour supprimer un post
 }

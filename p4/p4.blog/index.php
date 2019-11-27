@@ -77,6 +77,7 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
 
         elseif($_GET["action"] == "createPostViewConfirm"){ // Quand on est sur le formulaire on appel le trait createPost()
             ToolsBackend::createPost($_POST["title"], $_POST["content"]);
+            header("location: index.php?action=backend"); //renvoi à l'accueil de backend
         }
 
         elseif($_GET["action"] == "postBackend"){ //quand clic sur vue détaillé pour un post
@@ -95,6 +96,7 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
         }
         elseif($_GET["action"] == "updatePostConfirm"){ //quand on confirme l'update du post
             ToolsBackend::updatePost($_POST["title"], $_POST["content"], $_GET["id"]);
+            header("location: index.php?action=backend"); //renvoi à l'accueil de backend
         }
 
     else{
