@@ -41,5 +41,12 @@
             $update = $postManager->updatePost($title,$content,$postId); // appel de la fonction de l'objet source
             
         }
+
+        //fonction pour supprimer un post
+        public static function deletePost($postId)
+        {
+            $postManager = new PostManager(); // Création d'un objet PostManager()
+            $delete = $postManager->deletePost($postId); // Appel de la méthode deletePost de l'objet PostManager
+        }
         
     }

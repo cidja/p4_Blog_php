@@ -19,7 +19,7 @@ if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on 
         <div class="menuposts">
             <div id="readpost"><a href="index.php?action=postBackend&amp;id=<?= $data["id"]; ?>"><i class="fas fa-search-plus"></i>Vue détaillée</a></div>
             <div id="updatepost"><a href="index.php?action=updatePost&amp;id=<?= $data["id"]; ?>"><i class="fas fa-edit"></i>Modifier le post</a></div> <!--utilisation de $data["id"] pour le récupérer dans l'index.php !-->
-            <div id="deletepost"><a href="#"><i class="fas fa-trash-alt"></i>Supprimer le post</a></div>
+            <div id="deletepost"><a href="index.php?action=deletePost&amp;id=<?= $data["id"]; ?>"><i class="fas fa-trash-alt"></i>Supprimer le post</a></div>
         </div>
             <h3>
                 <?= htmlspecialchars($data['title']) ?>

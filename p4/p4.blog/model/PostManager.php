@@ -35,7 +35,7 @@ class PostManager  extends ManagerDb
 
     //fonction qui sera utilisé pour créer un post (admin backend)
     public function createPost($title, $content){
-        $db= $this->dbConnect(); // conntection avec la base de données
+        $db= $this->dbConnect(); // Connexion à la bdd
         $req = $db->prepare("INSERT INTO posts(title, content, creation_date) VALUES (:title, :content, NOW())");
         $createPost = $req->execute(array(
             ":title"    => $title,
@@ -45,4 +45,11 @@ class PostManager  extends ManagerDb
     }
 
     //fonction utilisé pour supprimer un post
+    public function deletePost($postId){
+        $db = $this->dbConnect(); //Connexion à la bdd
+        $req =$db->prepare("DELETE FROM posts WHERE id= ?");
+        $deletePost = $req->execute(array($postId));
+        return $deletePost;
+
+    }
 }

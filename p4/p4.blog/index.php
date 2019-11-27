@@ -98,7 +98,10 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
             ToolsBackend::updatePost($_POST["title"], $_POST["content"], $_GET["id"]);
             header("location: index.php?action=backend"); //renvoi à l'accueil de backend
         }
-
+        elseif($_GET["action"] == "deletePost"){
+            ToolsBackend::deletePost($_GET["id"]);
+            header("location: index.php?action=backend"); //renvoi à l'accueil de backend
+        }
     else{
         ToolsFrontend::listPosts(); //appel de listPosts() liste des posts
         }
