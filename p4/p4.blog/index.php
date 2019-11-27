@@ -4,8 +4,9 @@ session_start(); // enregistrement des paramètres pour l'admin source: http://w
 include(dirname(__FILE__)."/model/Managerdb.php");
 include(dirname(__FILE__)."/controller/frontend.php");
 include(dirname(__FILE__)."/controller/backend.php");
-include(dirname(__FILE__)."/model/PostManager.php"); //appel de la classe PostManager require_once (une fois uniquement)
-include(dirname(__FILE__)."/model/CommentManager.php"); //appel de la classe CommentManager require_once (une fois uniquement)
+include(dirname(__FILE__)."/model/PostManager.php"); //appel de la classe PostManager 
+include(dirname(__FILE__)."/model/CommentManager.php"); //appel de la classe CommentManager 
+include(dirname(__FILE__)."/model/SessionManager.php"); //appel de la classe SessionManager
 
 
 try { // on essai de faire des choses source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689754
@@ -99,8 +100,17 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
             header("location: index.php?action=backend"); //renvoi à l'accueil de backend
         }
         elseif($_GET["action"] == "deletePost"){
+            if(isset($_GET['id']) && $_GET["id"] > 0){
             ToolsBackend::deletePost($_GET["id"]);
             header("location: index.php?action=backend"); //renvoi à l'accueil de backend
+            }
+            else {
+                throw new Exception("Aucun identifiant de billet envoyé");
+            }
+        }
+        elseif($_GET["action"] == "sessionDestroy"){
+            ToolsBackend::sessionStop();
+            header("location: index.php?action=listPosts");
         }
     else{
         ToolsFrontend::listPosts(); //appel de listPosts() liste des posts

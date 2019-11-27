@@ -15,7 +15,7 @@
         </h3>
                 
         <p>
-            <?= nl2br(htmlspecialchars($data['content'])) ?>
+            <?= nl2br(htmlspecialchars_decode($data['content'])) ?>
             <br />
             <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
         </p>

@@ -48,5 +48,9 @@
             $postManager = new PostManager(); // Création d'un objet PostManager()
             $delete = $postManager->deletePost($postId); // Appel de la méthode deletePost de l'objet PostManager
         }
-        
+        public static function sessionStop()
+        {
+            $sessionManager = new SessionManager(); // Création d'un objet SessionManager()
+            $sessionDestroy = $sessionManager->sessionStop(); // Appel de la méthode sessionStop() de l'objet SessionManager()
+        }
     }
