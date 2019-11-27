@@ -67,22 +67,42 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
                 } 
             }
             else {
-                throw new Exception("Erreur mauvais mot de passe ou identifiant");
-                
+                throw new Exception("Erreur mauvais mot de passe ou identifiant");  
             }
         }
+
         elseif ($_GET["action"] == "createPostView"){
             header("location: view/backend/createPostView.php"); //envoi sur le formulaire 
         }
+
         elseif($_GET["action"] == "createPostViewConfirm"){ // Quand on est sur le formulaire on appel le trait createPost()
             ToolsBackend::createPost($_POST["title"], $_POST["content"]);
         }
-        
-    }
+
+        elseif($_GET["action"] == "postBackend"){ //quand clic sur vue détaillé pour un post
+            if(isset($_GET['id']) && $_GET["id"] > 0){ //Si dans l'url action = post on appel post du controller)
+                ToolsBackend::getPost();
+            }
+            else {
+                throw new Exception("Aucun identifiant de billet envoyé");
+            }
+        }
+        elseif($_GET["action"] == "updatePost"){
+            if(isset($_GET['id']) && $_GET["id"] > 0){
+                ToolsBackend::getPostForUpdate();
+                
+            }
+        }
+        elseif($_GET["action"] == "updatePostConfirm"){ //quand on confirme l'update du post
+            ToolsBackend::updatePost($_POST["title"], $_POST["content"], $_GET["id"]);
+        }
+
     else{
         ToolsFrontend::listPosts(); //appel de listPosts() liste des posts
+        }
     }
 }
+
 catch(Exception $e) // s'il y a une erreur, alors...
 {
     echo "Erreur : " . $e->getMessage();

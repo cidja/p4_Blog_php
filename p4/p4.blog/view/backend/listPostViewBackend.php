@@ -1,15 +1,12 @@
 <?php 
 
 if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on a bien les id et mdp pour acceder à l'interface d'admin
-    echo $_SESSION["user"];
-    echo "<br>" .$_SESSION["mdp"];
     $title = "Admin mon blog"; 
 
- ob_start(); ?>
+    ob_start(); ?>
  
     <h1>Administration super blog</h1>
     
-    <div id="readpost"><i class="fas fa-book-open"></i>Lire les posts</div>
     <div id="createpost"><a href="index.php?action=createPostView"><i class="fas fa-plus-circle"></i>Créer un post </a></div>
     <div id="updatepost"><i class="fas fa-edit"></i>Modifier un post</div>
     <div id="deletepost"><i class="fas fa-trash-alt"></i>Supprimer un post</div>
@@ -19,15 +16,20 @@ if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on 
         {
     ?>
         <div class="news">
+        <div class="menuposts">
+            <div id="readpost"><a href="index.php?action=postBackend&amp;id=<?= $data["id"]; ?>">Vue détaillée</a></div>
+            <div id="updatepost"><a href="index.php?action=updatePost&amp;id=<?= $data["id"]; ?>">Modifier le post</a></div> <!--utilisation de $data["id"] pour le récupérer dans l'index.php !-->
+            <div id="deletepost"><a href="#">Supprimer le post</a></div>
+        </div>
             <h3>
                 <?= htmlspecialchars($data['title']) ?>
                 <em>le <?= $data['creation_date_fr'] ?></em>
             </h3>
                     
             <p>
-                <?= nl2br(htmlspecialchars($data['content'])) ?>
+                <?= nl2br(htmlspecialchars_decode($data['content'])); //utilisation de htmlspecialchars_decode pour afficher les infos en mode texte et pas en html brut source: https://askcodez.com/comment-afficher-du-html-a-partir-dune-base-de-donnees-mysql-en-php.html ?>
                 <br />
-                <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Vue détaillée</a></em>
+                
             </p>
         </div>
     <?php
