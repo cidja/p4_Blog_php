@@ -1,5 +1,5 @@
 <?php //deviens notre routeur 
-session_start(); // enregistrement des paramètres pour l'admin source: http://www.lephpfacile.com/cours/18-les-sessions Ligne 64
+//session_start(); // enregistrement des paramètres pour l'admin source: http://www.lephpfacile.com/cours/18-les-sessions Ligne 64
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481
 include(dirname(__FILE__)."/model/Managerdb.php");
 include(dirname(__FILE__)."/controller/frontend.php");
@@ -112,10 +112,10 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
             ToolsBackend::sessionStop();
             header("location: index.php?action=listPosts");
         }
+    }
     else{
         ToolsFrontend::listPosts(); //appel de listPosts() liste des posts
         }
-    }
 }
 
 catch(Exception $e) // s'il y a une erreur, alors...
