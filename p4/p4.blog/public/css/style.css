@@ -2,13 +2,9 @@ header{
     display: flex;
     justify-content: flex-end;
 }
-<<<<<<< HEAD
 
-a:visited{
-    color: darkgreen;
-=======
 .menuposts{
     display: flex;
     justify-content: space-around;
->>>>>>> backend
 }
+

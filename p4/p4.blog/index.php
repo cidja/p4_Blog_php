@@ -49,6 +49,7 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
         
         elseif ($_GET["action"] == "signalComment"){ //Pour signaler un commentaire 
             ToolsFrontend::signalComment( $_GET["id"], $_GET["post_id"]); //Appel de la fonction signalComment du controller frontend avec comme paramètres le post_id du comment
+           
         }
 
 

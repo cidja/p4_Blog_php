@@ -26,20 +26,27 @@ class PostManager  extends ManagerDb
     }
     public function updatePost($title,$content,$postId) //fonction utilisé pour update un post dans le backend
     {
+        //utilisation de htmlspecialchars pour éviter des pb de sécurité
+        $titleEpure     = htmlspecialchars($title);
+        $contentEpure   = htmlspecialchars($content);
+        $postIdEpure    = htmlspecialchars($postId);
         $db = $this->dbConnect();
         $req = $db->prepare("UPDATE posts SET title = ?, content = ? WHERE id = ?");
-        $updatePost = $req->execute(array($title,$content,$postId));
+        $updatePost = $req->execute(array($titleEpure,$contentEpure,$postIdEpure));
         return $updatePost;
         
     }
 
     //fonction qui sera utilisé pour créer un post (admin backend)
     public function createPost($title, $content){
+        //utilisation de htmlspecialchars pour éviter des pb de sécurité
+        $titleEpure     = htmlspecialchars($title);
+        $contentEpure   = htmlspecialchars($content);
         $db= $this->dbConnect(); // Connexion à la bdd
         $req = $db->prepare("INSERT INTO posts(title, content, creation_date) VALUES (:title, :content, NOW())");
         $createPost = $req->execute(array(
-            ":title"    => $title,
-            ":content"  => $content
+            ":title"    => $titleEpure,
+            ":content"  => $contentEpure
         ));
         return $createPost;
     }
