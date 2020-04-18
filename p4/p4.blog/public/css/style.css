@@ -2,9 +2,7 @@ header{
     display: flex;
     justify-content: flex-end;
 }
-
 .menuposts{
     display: flex;
     justify-content: space-around;
 }
-

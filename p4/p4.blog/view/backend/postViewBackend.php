@@ -4,7 +4,7 @@
         
         ob_start();  // On commence la "capture" du code html suivant?> 
         <h1>Mon super blog</h1>
-        <p><a href="/private/php/p4/p4.blog/index.php?action=backend">Retour à la liste des billets </a></p>
+        <p><a href="index.php?action=backend">Retour à la liste des billets </a></p>
 
         <div class="news">
             <h3>
@@ -13,7 +13,7 @@
             </h3>
 
             <p>
-                <?= nl2br(htmlspecialchars($post["content"])) // Affichage du contenu du billet ?>
+                <?= nl2br(htmlspecialchars_decode($post["content"])) // Affichage du contenu du billet ?>
             </p>
         </div>
         <?php

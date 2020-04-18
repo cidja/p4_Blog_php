@@ -6,7 +6,7 @@ session_start();
 
  <h1>Création de billet</h1>
 
-    <form action="/private/php/p4/p4.blog/index.php?action=createPostViewConfirm" method="post">
+    <form action="/p4/index.php?action=createPostViewConfirm" method="post">
         <label for="title"> Titre du billet : </label>
             <input type="text" id="title" name="title" placeholder="Titre" required autofocus />
         <label for="content">Contenu du billet : </label>    
@@ -16,7 +16,7 @@ session_start();
     </form> 
 
     <!--lien pour retourner à la liste des billets !-->
-    <a href="/private/php/p4/p4.blog/index.php?action=backend">Retour à la liste des billets </a>
+    <a href="/p4/index.php?action=backend">Retour à la liste des billets </a>
     <?php  
     $content = ob_get_clean();
 

@@ -14,7 +14,7 @@
             </h3>
 
             <p>
-                <?= nl2br(htmlspecialchars($post["content"])) // Affichage du contenu du billet ?>
+                <?= nl2br(htmlspecialchars_decode($post["content"])) // Affichage du contenu du billet ?>
             </p>
         </div>
 
@@ -40,10 +40,9 @@
         ?>
             <p><strong><?= htmlspecialchars($comment["author"]) // Affichage de l'auteur du commentaire ?></strong> le
             <?= htmlspecialchars($comment["comment_date_fr"])  // Affichage de la date du commentaire ?> </p>
-            <p><?= nl2br(htmlspecialchars_decode($comment["comment"])) // Affichage du contenu du commentaire ?></p>
+            <p><?= nl2br(htmlspecialchars($comment["comment"])) // Affichage du contenu du commentaire ?></p>
            
-            <a href="index.php?action=signalComment&amp;id=<?= $comment["id"]?>&post_id=<?= $comment["post_id"]?>" id="signalLink">Signaler le commentaire</a><!--Utiliser pour renvoyer sur une page pour valider la signalisation de commentaire !-->
-            
+            <a href="index.php?action=signalComment&amp;id=<?= $comment["id"]?>&post_id=<?= $comment["post_id"]?>" id="signallink">Signaler le commentaire</a><!--Utiliser pour renvoyer sur une page pour valider la signalisation de commentaire !-->
         <?php
 
         }

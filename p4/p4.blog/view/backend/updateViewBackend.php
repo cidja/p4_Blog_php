@@ -6,7 +6,7 @@ if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on 
     ob_start(); ?>
 
     <h3>Modification du post </h3>
-    <form action="/private/php/p4/p4.blog/index.php?action=updatePostConfirm&amp;id=<?= $_GET["id"]; ?>" method="post">
+    <form action="/p4/index.php?action=updatePostConfirm&amp;id=<?= $_GET["id"]; ?>" method="post">
         <label for="title"> Titre du billet : </label>
             <input type="text" id="title" name="title" value="<?= htmlspecialchars($post['title']);?>" required autofocus />
         <label for="content">Contenu du billet : </label>    
@@ -16,7 +16,7 @@ if(isset($_SESSION["user"]) && isset($_SESSION["mdp"])){ //on vérifie que l'on 
     </form> 
 
     <!--lien pour retourner à la liste des billets !-->
-    <a href="/private/php/p4/p4.blog/index.php?action=backend">Retour à la liste des billets </a>
+    <a href="/p4/index.php?action=backend">Retour à la liste des billets </a>
     <?php  
     $content = ob_get_clean();
 

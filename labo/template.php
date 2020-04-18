@@ -21,6 +21,7 @@
             <input type="submit" value="connexion" />
         </form>
     </div>
+    <a href="view/index_mdp.php">Créer mot de passe admin</a>
     </header>
 
         <?= $content ?> <!--va contenir ce que l'on veut mettre dedans direction listPostView.php !-->

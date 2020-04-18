@@ -1,12 +1,12 @@
 <?php //deviens notre routeur 
 session_start(); // enregistrement des paramètres pour l'admin source: http://www.lephpfacile.com/cours/18-les-sessions Ligne 64
 //source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4682351-creer-un-routeur#/id/r-4682481
-include(dirname(__FILE__)."/model/Managerdb.php");
+//include(dirname(__FILE__)."/model/Managerdb.php");
 include(dirname(__FILE__)."/controller/frontend.php");
 include(dirname(__FILE__)."/controller/backend.php");
-include(dirname(__FILE__)."/model/PostManager.php"); //appel de la classe PostManager 
-include(dirname(__FILE__)."/model/CommentManager.php"); //appel de la classe CommentManager 
-include(dirname(__FILE__)."/model/SessionManager.php"); //appel de la classe SessionManager
+//include(dirname(__FILE__)."/model/PostManager.php"); //appel de la classe PostManager 
+//include(dirname(__FILE__)."/model/CommentManager.php"); //appel de la classe CommentManager 
+//include(dirname(__FILE__)."/model/SessionManager.php"); //appel de la classe SessionManager
 
 
 try { // on essai de faire des choses source: https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php/4689546-gerer-les-erreurs#/id/r-4689754
@@ -49,7 +49,6 @@ try { // on essai de faire des choses source: https://openclassrooms.com/fr/cour
         
         elseif ($_GET["action"] == "signalComment"){ //Pour signaler un commentaire 
             ToolsFrontend::signalComment( $_GET["id"], $_GET["post_id"]); //Appel de la fonction signalComment du controller frontend avec comme paramètres le post_id du comment
-           
         }
 
 

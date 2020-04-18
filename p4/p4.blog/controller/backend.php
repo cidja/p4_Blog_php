@@ -1,5 +1,8 @@
 <?php
     //tous les appels de classes se font dans l'index.php
+    require_once("model/PostManager.php"); //appel de la classe PostManager require_once (une fois uniquement)
+    require_once("model/CommentManager.php"); //appel de la classe CommentManager require_once (une fois uniquement)
+    require_once("model/SessionManager.php");
 
     trait ToolsBackend{
         // Fonction pour lister les posts
